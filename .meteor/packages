@@ -6,3 +6,10 @@
 
 meteor-platform
 iron:router
+reywood:bootstrap3-sass
+accounts-base
+accounts-password
+accounts-ui
+aldeed:autoform
+aldeed:collection2
+houston:admin

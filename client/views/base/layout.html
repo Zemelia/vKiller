@@ -1,7 +1,9 @@
 <template name="layout">
-    {{> menu}}
+    {{> menu menu='mainMenu'}}
+    {{> loginButtons}}
     <div class="container">
         <div id="main">
+          {{> yield}}
         </div>
     </div>
 </template>

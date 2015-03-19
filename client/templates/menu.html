@@ -1,9 +1,11 @@
 <template name="menu">
-  <ul class="menu">
-    {{#each links}}
-      <li>
-        {{this}}
-      </li>
-    {{/each}}
-  </ul>
+  {{#if links}}
+    <ul class="menu" id={{menu}}>
+      {{#each links}}
+        <li>
+          <a href={{link}}>{{title}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
 </template>

@@ -1,5 +1,6 @@
 Template.menu.helpers({
   links: function () {
-    return ['buu', 'buu2', 'buu3'];
+    return vKiller.Menus[this.menu];
   }
-})
+
+});
