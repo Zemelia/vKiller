@@ -1,5 +1,7 @@
 <template name="friends">
   <div class="friends">
-    {{this}}
+    {{#each users}}
+      {{username}} <br />
+    {{/each}}
   </div>
 </template>

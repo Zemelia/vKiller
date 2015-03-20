@@ -1,0 +1,6 @@
+<template name="createChatroom">
+  {{#autoForm collection="chatRoom" id="createChatroom" type="insert"}}
+    {{> afQuickField name='messages' rows=6}}
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template>

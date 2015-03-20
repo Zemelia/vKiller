@@ -7,3 +7,4 @@ if (Posts.find().count() === 0) {
     summary: 'Buuuuuu'
   });
 }
+Houston.add_collection(Meteor.users);
