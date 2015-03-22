@@ -1,8 +1,8 @@
 <template name="chatroom">
   <div class="chatroom">
-    <span class="add"><a href={{pathFor 'createChatroom'}}>Send message</a></span>
-    {{#each chats}}
-    b
+    {{#each messages}}
+      {{date}} by {{author}} <br/>
+      {{message}}
     {{/each}}
   </div>
 </template>

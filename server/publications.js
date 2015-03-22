@@ -7,3 +7,7 @@ Meteor.publish('users', function(options) {
 Meteor.publish('chatroom', function(options) {
   return chatRoom.find({}, options);
 });
+Meteor.publish('chatroomId', function(id) {
+  check(id, String);
+  return chatRoom.find(id);
+});

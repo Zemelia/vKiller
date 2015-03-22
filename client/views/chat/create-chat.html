@@ -1,6 +1,15 @@
 <template name="createChatroom">
-  {{#autoForm collection="chatRoom" id="createChatroom" type="insert"}}
-    {{> afQuickField name='messages' rows=6}}
+  {{#autoForm schema="SchemaCreateChatroom" id="createChatroom" type="method" meteormethod="createChat"}}
+    {{> afFieldInput
+      type='xautocomplete'
+      formid="createChatroom"
+      name='username'
+      call='getUsernames'
+      reference='Users'
+      fieldref='username'
+      renderfunction='renderUsers'
+    }}
+    {{> afQuickField name="message" rows=6}}
     <button type="submit" class="btn btn-primary">Insert</button>
   {{/autoForm}}
 </template>
