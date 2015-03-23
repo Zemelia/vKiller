@@ -1,8 +1,10 @@
 <template name="chats">
   <div class="chats">
-    <span class="add"><a href={{pathFor 'createChatroom'}}>Send message</a></span>
+    <div class="add"><a href={{pathFor 'createChatroom'}}>Send message</a></div>
     {{#each chats}}
-    b
+      <div class="chat">
+        {{{chatsView}}}
+      </div>
     {{/each}}
   </div>
 </template>

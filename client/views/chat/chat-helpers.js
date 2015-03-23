@@ -15,8 +15,13 @@ AutoForm.hooks({
     }
   }
 });
-Template.chatroom.helpers({
-  buu: function() {
-    console.log(this)
+Template.chats.helpers({
+  chatsView: function() {
+    var recipients = _.without(this.recipients, Meteor.userId());
+    var names = [];
+    _.each(recipients, function (id) {
+      names.push(Meteor.users.findOne({_id: id}).username);
+    });
+    return '<a href="' + Router.path('chatroom', {_id: this._id}) + '">' + names.join(', ') + ' ' + Blaze._globalHelpers.formatDate(this.date) + '</a>';
   }
 });

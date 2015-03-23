@@ -9,8 +9,10 @@ iron:router
 reywood:bootstrap3-sass
 accounts-base
 accounts-password
-accounts-ui
 aldeed:autoform
 aldeed:collection2
 houston:admin
 miguelalarcos:afwrap-xautocomplete
+underscore
+ian:accounts-ui-bootstrap-3
+mrt:moment

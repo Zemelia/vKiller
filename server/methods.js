@@ -34,5 +34,8 @@ Meteor.methods({
       }).fetch();
     }
     return result;
+  },
+  getUsernameById: function() {
+
   }
 });

@@ -1,9 +1,15 @@
 <template name="layout">
-    {{> menu menu='mainMenu'}}
-    {{> loginButtons}}
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      {{> menu menu='mainMenu'}}
+      <ul class="nav navbar-nav navbar-right">
+        {{> loginButtons}}
+      </ul>
+    </div>
+  </nav>
     <div class="container">
-        <div id="main">
-          {{> yield}}
-        </div>
+      <div id="main">
+        {{> yield}}
+      </div>
     </div>
 </template>

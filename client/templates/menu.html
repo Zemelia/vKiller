@@ -1,8 +1,8 @@
 <template name="menu">
   {{#if links}}
-    <ul class="menu" id={{menu}}>
+    <ul class="nav navbar-nav" id={{menu}}>
       {{#each links}}
-        <li>
+        <li class="{{activeRouteClass path}}">
           <a href={{link}}>{{title}}</a>
         </li>
       {{/each}}
