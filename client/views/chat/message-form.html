@@ -1,0 +1,7 @@
+<template name="messageForm">
+  {{#autoForm schema="Schemas.sendMessage" id="messageForm" type="method" meteormethod="sendMessage"}}
+    {{> afQuickField name="message" rows=6}}
+    {{> afFieldInput name="chatId" value=chatId}}
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template>

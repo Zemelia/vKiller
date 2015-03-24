@@ -2,7 +2,6 @@ Meteor.methods({
   createChat: function(doc) {
     var chatExists = chatRoom.findOne({recipients: [Meteor.user()._id, doc.username]});
     if (!chatExists) {
-      console.log('aa')
       var newChat = {
         recipients: [Meteor.user()._id, doc.username],
         date: new Date(),
@@ -24,6 +23,18 @@ Meteor.methods({
       };
     }
   },
+  sendMessage: function (doc) {
+    check(doc, Schemas.sendMessage);
+    chatRoom.update(doc.chatId,
+      {$addToSet: {
+        messages: {
+          message: doc.message,
+          author: Meteor.user().username,
+          date: new Date()
+        }
+      }}
+    );
+  },
   getUsernames: function(query) {
     result = [];
     if (query != '') {
@@ -34,8 +45,5 @@ Meteor.methods({
       }).fetch();
     }
     return result;
-  },
-  getUsernameById: function() {
-
   }
 });

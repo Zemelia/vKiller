@@ -1,0 +1,10 @@
+.chatroom {
+  padding-bottom: 300px;
+  #messageForm {
+    background: #fff;
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    min-width: 1000px;
+  }
+}

@@ -1,8 +1,11 @@
 <template name="chatroom">
   <div class="chatroom">
     {{#each messages}}
-      {{date}} by {{author}} <br/>
-      {{message}}
+      <div class="message">
+        {{formatDate date}} by {{author}} <br/>
+        {{message}}
+      </div>
     {{/each}}
+    {{> messageForm}}
   </div>
 </template>

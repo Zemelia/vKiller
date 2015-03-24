@@ -13,6 +13,13 @@ AutoForm.hooks({
         }
       }
     }
+  },
+  messageForm: {
+    after: {
+      method: function(error, result) {
+        vKiller.srollToBottom();
+      }
+    }
   }
 });
 Template.chats.helpers({
@@ -24,4 +31,13 @@ Template.chats.helpers({
     });
     return '<a href="' + Router.path('chatroom', {_id: this._id}) + '">' + names.join(', ') + ' ' + Blaze._globalHelpers.formatDate(this.date) + '</a>';
   }
+});
+
+Template.messageForm.helpers({
+  chatId: function () {
+    return this._id;
+  }
+});
+Template.chatroom.onRendered(function() {
+  vKiller.srollToBottom();
 });
