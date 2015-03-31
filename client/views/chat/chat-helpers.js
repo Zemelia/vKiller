@@ -40,4 +40,13 @@ Template.messageForm.helpers({
 });
 Template.chatroom.onRendered(function() {
   vKiller.srollToBottom();
+  var $form = $('.chatroom form');
+  var formWidth = function($form) {
+    $form.width($form.parent().width())
+  };
+
+  formWidth($form);
+  $(window).bind('resize', function () {
+    formWidth($form)
+  });
 });

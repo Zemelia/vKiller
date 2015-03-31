@@ -20,7 +20,9 @@ Meteor.methods({
       return {
         chatExists: true,
         _id: chatExists._id
-      };
+
+
+      };іі
     }
   },
   sendMessage: function (doc) {
