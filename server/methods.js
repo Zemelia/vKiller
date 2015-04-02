@@ -20,9 +20,7 @@ Meteor.methods({
       return {
         chatExists: true,
         _id: chatExists._id
-
-
-      };іі
+      };
     }
   },
   sendMessage: function (doc) {
@@ -47,5 +45,14 @@ Meteor.methods({
       }).fetch();
     }
     return result;
+  },
+  followUser: function(id, followed_id, add) {
+    if (add) {
+      Users.update({"_id": id}, {$addToSet: {"friends.followed": followed_id}});
+      Users.update({"_id": followed_id}, {$addToSet: {"friends.followers": {"id" :id, "notice": true}}});
+    } else {
+      Users.update({"_id": id}, {$pull: {"friends.followed": followed_id}});
+      Users.update({"_id": followed_id}, {$pull: {"friends.followers": {"id" :id}}});
+    }
   }
 });

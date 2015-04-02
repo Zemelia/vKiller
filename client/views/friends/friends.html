@@ -1,7 +1,12 @@
 <template name="friends">
   <div class="friends">
     {{#each users}}
-      {{username}} <br />
+      {{> people_item}}
+      <br />
     {{/each}}
   </div>
+</template>
+<template name="people_item">
+  {{username}}
+  {{{followLink}}}
 </template>
