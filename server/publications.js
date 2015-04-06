@@ -18,8 +18,8 @@ Meteor.publish('users', function(options) {
         mod = 'followers.id';
         break;
     }
-    var query = {};
-    query['friends.' + mod] = this.userId;
+    var query = {$or: [{"_id": this.userId}, {}]};
+    query['$or'][1]["friends." + mod] = this.userId;
     return Users.find(query, {});
   }
   return Meteor.users.find({});

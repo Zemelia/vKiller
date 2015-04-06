@@ -47,20 +47,24 @@ Meteor.methods({
     return result;
   },
   followUser: function(id, followed_id, type) {
+    console.log(id, followed_id, type)
     switch (type) {
       case 'follow':
-      case 'unfollow':
-      case 'accept':
-      case 'decline':
-      case 'remove':
+        Users.update({"_id": id}, {$addToSet: {"friends.followed": followed_id}});
+        Users.update({"_id": followed_id}, {$addToSet: {"friends.followers": {"id" :id, "notice": true}}});
         break;
-    }
-    if (add) {
-      Users.update({"_id": id}, {$addToSet: {"friends.followed": followed_id}});
-      Users.update({"_id": followed_id}, {$addToSet: {"friends.followers": {"id" :id, "notice": true}}});
-    } else {
-      Users.update({"_id": id}, {$pull: {"friends.followed": followed_id}});
-      Users.update({"_id": followed_id}, {$pull: {"friends.followers": {"id" :id}}});
+      case 'unfollow':
+        Users.update({"_id": id}, {$pull: {"friends.followed": followed_id}});
+        Users.update({"_id": followed_id}, {$pull: {"friends.followers": {"id" :id}}});
+        break;
+      case 'accept':
+        Users.update({"_id": id}, {$addToSet: {"friends.activeFriends": followed_id}, $pull: {"friends.followers": {"id" :followed_id}}});
+        Users.update({"_id": followed_id}, {$addToSet: {"friends.activeFriends": id}, $pull: {"friends.followed": id}});
+        break;
+      case 'remove':
+        Users.update({"_id": id}, {$pull: {"friends.activeFriends": followed_id}, $addToSet: {"friends.followers": {"id" :followed_id, "notice": false}}});
+        Users.update({"_id": followed_id}, {$pull: {"friends.activeFriends": id}, $addToSet: {"friends.followed": id}});
+        break;
     }
   }
 });
