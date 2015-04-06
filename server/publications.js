@@ -2,37 +2,25 @@ Meteor.publish('posts', function(options) {
   return Posts.find({}, options);
 });
 Meteor.publish('users', function(options) {
+  if (_.isNull(this.userId)) {
+    return;
+  }
   if (options && options.friends) {
+    var mod = options.friends;
     switch (options.friends) {
       case 'activeFriends':
+        mod = 'activeFriends';
+        break;
       case 'followers':
+        mod = 'followed';
+        break;
       case 'followed':
-        var query = {
-          "_id": this.userId
-        };
-        query["friends." + options.friends] = {$exists: 1};
-        var projection = {
-          fields: {
-            "_id": 0
-          }
-        };
-        projection['fields']["friends." + options.friends] = 1;
-        var friends = Meteor.users.findOne(query, projection);
-        if (friends) {
-          var idList = friends.friends[options.friends];
-          if (options.friends == 'followers') {
-            idList = [];
-            _.each(friends.friends[options.friends], function (i, j) {
-              if (i['id']) {
-                idList.push(i['id']);
-              }
-            })
-          }
-          idList.push(this.userId);
-          return Users.find({"_id": {$in: idList}}, {});
-        }
-        return;
+        mod = 'followers.id';
+        break;
     }
+    var query = {};
+    query['friends.' + mod] = this.userId;
+    return Users.find(query, {});
   }
   return Meteor.users.find({});
 });
