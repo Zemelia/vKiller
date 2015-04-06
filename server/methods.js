@@ -46,7 +46,15 @@ Meteor.methods({
     }
     return result;
   },
-  followUser: function(id, followed_id, add) {
+  followUser: function(id, followed_id, type) {
+    switch (type) {
+      case 'follow':
+      case 'unfollow':
+      case 'accept':
+      case 'decline':
+      case 'remove':
+        break;
+    }
     if (add) {
       Users.update({"_id": id}, {$addToSet: {"friends.followed": followed_id}});
       Users.update({"_id": followed_id}, {$addToSet: {"friends.followers": {"id" :id, "notice": true}}});
