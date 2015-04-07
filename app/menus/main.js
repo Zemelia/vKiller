@@ -1,19 +1,20 @@
 vKiller.Menus['mainMenu'] = [
   {
     'title': 'People',
-    'path': 'people'
-  },
-  {
-    'title': 'Friends',
-    'path': 'friends'
-  },
-  {
-    'title': 'Followed',
-    'path': 'followed'
-  },
-  {
-    'title': 'Followers',
-    'path': 'followers'
+    'path': 'people',
+    'children': [
+      {
+        'title': 'Friends',
+        'path': 'friends'
+      },
+      {
+        'title': 'Followed',
+        'path': 'followed'
+      },
+      {
+        'title': 'Followers',
+        'path': 'followers'
+      }]
   },
   {
     'title': 'Posts',
@@ -26,7 +27,13 @@ vKiller.Menus['mainMenu'] = [
 ];
 
 _.each(vKiller.Menus, function (i, j) {
+  menuSetLink(i);
+});
+function menuSetLink(i) {
   _.each(i, function (menu) {
     menu.link = Router.path(menu.path);
+    if (menu.children) {
+      menuSetLink(menu.children)
+    }
   });
-});
+}

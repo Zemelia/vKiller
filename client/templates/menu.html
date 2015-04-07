@@ -2,10 +2,20 @@
   {{#if links}}
     <ul class="nav navbar-nav" id={{menu}}>
       {{#each links}}
-        <li class="{{activeRouteClass path}}">
-          <a href={{link}}>{{title}}</a>
-        </li>
+        {{> menu_item}}
       {{/each}}
     </ul>
   {{/if}}
+</template>
+<template name="menu_item">
+  <li class="{{activeRouteClass path}}{{#if children.length}}dropdown{{/if}}">
+    <a href={{link}}>{{title}}</a>
+    {{#if children.length}}
+      <ul class="dropdown-menu">
+        {{#each children}}
+          {{>menu_item}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </li>
 </template>
