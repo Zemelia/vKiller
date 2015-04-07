@@ -2,9 +2,6 @@ Meteor.publish('posts', function(options) {
   return Posts.find({}, options);
 });
 Meteor.publish('users', function(options) {
-  if (_.isNull(this.userId)) {
-    return;
-  }
   if (options && options.friends) {
     var mod = options.friends;
     switch (options.friends) {

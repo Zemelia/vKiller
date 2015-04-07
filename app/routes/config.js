@@ -3,5 +3,6 @@ Router.configure({
   loadingTemplate: 'loading',
   waitOn: function() {
     //return [Meteor.subscribe('chatroom')];
-  }
+  },
+  onBeforeAction: requireLogin
 });
