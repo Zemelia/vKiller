@@ -23,12 +23,23 @@ vKiller.Menus['mainMenu'] = [
   {
     'title': 'Chats',
     'path': 'chats'
+  },
+  {
+    'title': 'Profile',
+    'path': '#',
+    'children': [
+      {
+        'title': 'Profile edit',
+        'path': 'profile_edit'
+      }
+    ]
   }
 ];
 
 _.each(vKiller.Menus, function (i, j) {
   menuSetLink(i);
 });
+
 function menuSetLink(i) {
   _.each(i, function (menu) {
     menu.link = Router.path(menu.path);

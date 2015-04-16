@@ -1,0 +1,7 @@
+<template name="profileEdit">
+  {{#autoForm id="profileEdit" type="method" schema="userProfileSchema" meteormethod="profileUpdate"}}
+    {{> afQuickField name="birthday"}}
+    {{> afQuickField name="pictureId" type="cfs-file" collection="Images"}}
+    <button type="submit">Submit</button>
+  {{/autoForm}}
+</template>

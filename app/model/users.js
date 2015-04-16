@@ -1,4 +1,35 @@
 Users = Meteor.users;
+userProfileSchema = new SimpleSchema({
+  firstName: {
+    type: String,
+    regEx: /^[a-zA-Z-]{2,25}$/,
+    optional: true
+  },
+  lastName: {
+    type: String,
+    regEx: /^[a-zA-Z]{2,25}$/,
+    optional: true
+  },
+  birthday: {
+    type: Date,
+    optional: true
+  },
+  gender: {
+    type: String,
+    allowedValues: ['Male', 'Female'],
+    optional: true
+  },
+  pictureId: {
+    type: String,
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: "cfs-file",
+        collection: "images"
+      }
+    }
+  }
+});
 var usersSchema = new SimpleSchema({
   username: {
     type: String,
@@ -45,6 +76,10 @@ var usersSchema = new SimpleSchema({
         optional: true
       }
     }),
+    optional: true
+  },
+  profile: {
+    type: userProfileSchema,
     optional: true
   }
 });

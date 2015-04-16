@@ -47,7 +47,6 @@ Meteor.methods({
     return result;
   },
   followUser: function(id, followed_id, type) {
-    console.log(id, followed_id, type)
     switch (type) {
       case 'follow':
         Users.update({"_id": id}, {$addToSet: {"friends.followed": followed_id}});
@@ -66,5 +65,8 @@ Meteor.methods({
         Users.update({"_id": followed_id}, {$pull: {"friends.activeFriends": id}, $addToSet: {"friends.followed": id}});
         break;
     }
+  },
+  profileUpdate: function (doc) {
+    console.log(doc)
   }
 });

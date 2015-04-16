@@ -17,3 +17,8 @@ underscore
 ian:accounts-ui-bootstrap-3
 mrt:moment
 sacha:spin
+cfs:standard-packages
+cfs:gridfs
+cfs:graphicsmagick
+fourseven:scss
+cfs:autoform

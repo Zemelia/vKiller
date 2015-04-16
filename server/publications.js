@@ -1,6 +1,7 @@
 Meteor.publish('posts', function(options) {
   return Posts.find({}, options);
 });
+Meteor.publish('images');
 Meteor.publish('users', function(options) {
   if (options && options.friends) {
     var mod = options.friends;
