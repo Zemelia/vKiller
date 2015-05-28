@@ -1,7 +1,9 @@
 Meteor.publish('posts', function(options) {
   return Posts.find({}, options);
 });
-Meteor.publish('images');
+Meteor.publish('images', function (options) {
+  return Images.find();
+});
 Meteor.publish('users', function(options) {
   if (options && options.friends) {
     var mod = options.friends;
@@ -20,7 +22,7 @@ Meteor.publish('users', function(options) {
     query['$or'][1]["friends." + mod] = this.userId;
     return Users.find(query, {});
   }
-  return Meteor.users.find({});
+  return Users.find({});
 });
 Meteor.publish('chatroom', function() {
   return chatRoom.find({recipients: this.userId});

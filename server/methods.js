@@ -67,6 +67,11 @@ Meteor.methods({
     }
   },
   profileUpdate: function (doc) {
-    console.log(doc)
+    console.log('70', doc)
+    //check(doc, userProfileSchema)
+    Users.update({"_id": Meteor.user()._id}, {$set: {"profile": doc}})
+  },
+  removeImage: function (id) {
+    Images.remove({"_id": id});
   }
 });

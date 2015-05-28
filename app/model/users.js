@@ -24,8 +24,7 @@ userProfileSchema = new SimpleSchema({
     optional: true,
     autoform: {
       afFieldInput: {
-        type: "cfs-file",
-        collection: "images"
+        type: "imageField"
       }
     }
   }
