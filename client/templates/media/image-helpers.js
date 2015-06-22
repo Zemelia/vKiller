@@ -1,19 +1,28 @@
 Template.imageField.events({
-  'change input[type="file"]': function (event, template) {
+  'upload input[type="file"]': function (event, tmpl) {
     FS.Utility.eachFile(event, function (file) {
       Images.insert(file, function (err, fileObj) {
         if (fileObj) {
-          template.find('input[name="' + template.data.name + '"]').value = fileObj._id;
+          tmpl.find('input[name="' + tmpl.data.name + '"]').value = fileObj._id;
         } else {}
       })
     });
+  },
+  'click button[type="submit"]': function (event, tmpl) {
+    tmpl.$('input[type="file"]').trigger('upload');
+    return false;
   }
 });
-if (Meteor.isClient) {
-  AutoForm.addInputType("imageField", {
-    template: "imageField",
-    valueOut: function () {
-      return this.val();
-    }
-  })
-}
+
+Template.imageField.helpers({
+  userImage: function () {
+    return Images.findOne({_id: this.value});
+  }
+});
+
+AutoForm.addInputType("imageField", {
+  template: "imageField",
+  valueOut: function () {
+    return this.val();
+  }
+});

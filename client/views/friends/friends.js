@@ -11,6 +11,13 @@ Template.friends.events({
 });
 
 Template.friends.helpers({
+  userImage: function () {
+    var image = '';
+    if (!_.isUndefined(this.profile) && !_.isEmpty(this.profile.pictureId)) {
+      var image =  Images.findOne({_id: this.profile.pictureId});
+    }
+    return image;
+  },
   followLink: function () {
     var user = Meteor.user();
     if (checkObjectExists(user, 'friends.followers') && _.contains(_.pluck(user.friends.followers, 'id'), this._id)) {

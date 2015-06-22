@@ -66,9 +66,7 @@ Meteor.methods({
         break;
     }
   },
-  profileUpdate: function (doc) {
-    console.log('70', doc)
-    //check(doc, userProfileSchema)
+  profileUpdate: function (doc, doc1, doc2) {
     Users.update({"_id": Meteor.user()._id}, {$set: {"profile": doc}})
   },
   removeImage: function (id) {

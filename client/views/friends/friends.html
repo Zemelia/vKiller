@@ -1,6 +1,10 @@
 <template name="friends">
   <div class="friends">
     {{#each users}}
+      {{image}}
+      {{#if userImage}}
+        <img src="{{userImage.url store='thumbs'}}" alt="" class="thumbnail" />
+      {{/if}}
       {{username}}
       {{{followLink}}}
       <br />

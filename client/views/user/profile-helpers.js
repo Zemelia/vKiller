@@ -1,7 +1,6 @@
 AutoForm.hooks({
   profileEdit: {
     onSubmit: function (insertDoc, updateDoc, currentDoc) {
-      console.log('aa')
     }
   }
 });
@@ -12,6 +11,9 @@ Template.profileEdit.helpers({
   },
   images: function () {
     return Images.find();
+  },
+  thisDoc: function () {
+    return this.user.profile;
   }
 });
 Template.profileEdit.events({

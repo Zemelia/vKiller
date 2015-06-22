@@ -1,22 +1,14 @@
 <template name="profileEdit">
-  {{#autoForm id="profileEdit" type="method" schema="userProfileSchema" meteormethod="profileUpdate"}}
+  {{#autoForm id="profileEdit" type="method" schema="userProfileSchema" meteormethod="profileUpdate" doc=thisDoc}}
     {{> afQuickField name="birthday"}}
-
     {{#if userImage}}
       <div class="imageView">
         <img src="{{userImage.url store='thumbs'}}" alt="" class="thumbnail" />
+        <button id="remove_picture" type="submit">Remove</button>
       </div>
-      <button id="remove_picture" type="submit">Remove</button>
     {{else}}
       {{> afQuickField name="pictureId"}}
     {{/if}}
-    <button type="submit">Submit</button>
+    <button id="submit" type="submit">Submit</button>
   {{/autoForm}}
-
-  =====================
-  {{#each images}}
-    <div>
-      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='thumbs'}}" alt="" class="thumbnail" /></a>
-    </div>
-  {{/each}}
 </template>
