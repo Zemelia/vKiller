@@ -26,7 +26,7 @@ vKiller.Menus['mainMenu'] = [
   },
   {
     'title': 'Profile',
-    'path': '#',
+    'path': 'myProfile',
     'children': [
       {
         'title': 'Profile edit',

@@ -3,12 +3,30 @@ userProfileSchema = new SimpleSchema({
   firstName: {
     type: String,
     regEx: /^[a-zA-Z-]{2,25}$/,
-    optional: true
+    optional: true,
+    autoform: {
+      label: false,
+      placeholder: "schemaLabel"
+    }
   },
   lastName: {
     type: String,
     regEx: /^[a-zA-Z]{2,25}$/,
-    optional: true
+    optional: true,
+    autoform: {
+      label: false,
+      placeholder: "schemaLabel"
+    }
+  },
+  pictureId: {
+    type: String,
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: "fileUpload",
+        collection: "Images"
+      }
+    }
   },
   birthday: {
     type: Date,
@@ -17,15 +35,11 @@ userProfileSchema = new SimpleSchema({
   gender: {
     type: String,
     allowedValues: ['Male', 'Female'],
-    optional: true
-  },
-  pictureId: {
-    type: String,
-    optional: true,
     autoform: {
-      afFieldInput: {
-        type: "imageField"
-      }
+      class: "browser-default",
+      type: "select",
+      options: "allowed",
+      firstOption: "- Select your gender -"
     }
   }
 });

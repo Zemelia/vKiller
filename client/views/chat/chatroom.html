@@ -1,11 +1,21 @@
 <template name="chatroom">
   <div class="chatroom">
-    {{#each messages}}
-      <div class="message">
-        {{formatDate date}} by {{author}} <br/>
-        {{message}}
-      </div>
-    {{/each}}
-    {{> messageForm}}
+    <div class="messages">
+      {{#each messages}}
+        {{> message}}
+      {{/each}}
+    </div>
+    <div class="message-form-wrapper">
+      {{> messageForm}}
+      <div class="recipients">{{{recipients}}}</div>
+    </div>
+  </div>
+</template>
+
+<template name="message">
+  <div class="message">
+    <div class="time tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{timeTitle}}">{{time}}</div>
+    <div class="avatar">{{> userImage userId=author imageStyle="avatars"}}</div>
+    <div class="message-text">{{message}}</div>
   </div>
 </template>

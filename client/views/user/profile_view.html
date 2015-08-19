@@ -1,0 +1,7 @@
+<template name="profileView">
+  <h2>{{user.username}}</h2>
+  <div class="avatar">{{> userImage user=user imageStyle="thumbs"}}</div>
+  <div class="first-name"><span>First Name: </span>{{user.profile.firstName}}</div>
+  <div class="last-name"><span>Last Name: </span>{{user.profile.lastName}}</div>
+  <div class="date"><span>Birthday:</span> {{formatDate user.profile.birthday 'DD MMMM YYYY'}}</div>
+</template>

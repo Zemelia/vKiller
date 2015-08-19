@@ -3,6 +3,7 @@ Template.menu.helpers({
     return vKiller.Menus[this.menu];
   }
 });
+
 Template.menu_item.helpers({
   activeRouteClass: function() {
     var args = Array.prototype.slice.call(arguments, 0);

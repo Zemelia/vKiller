@@ -1,0 +1,15 @@
+.form-group {
+  margin-bottom: 40px;
+}
+input.hidden {
+  display: none;
+}
+.help-block {
+  display: none;
+}
+.has-error {
+  > input[type="text"],
+  > textarea {
+    outline: 1px solid red;
+  }
+}

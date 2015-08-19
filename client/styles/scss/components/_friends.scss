@@ -1,0 +1,12 @@
+.friends {
+  .user {
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 15px;
+    .image {
+      float: left;
+      width: 60px;
+      margin: 0 10px 0 0;
+    }
+  }
+}

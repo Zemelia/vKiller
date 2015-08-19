@@ -1,17 +1,24 @@
 <template name="menu">
   {{#if links}}
-    <ul class="nav navbar-nav" id={{menu}}>
-      {{#each links}}
-        {{> menu_item}}
-      {{/each}}
-    </ul>
+    <div class="navbar-fixed">
+      <nav class="blue">
+        {{> loginButtons}}
+        <div class="nav-wrapper">
+          <ul class="nav navbar-nav" id={{menu}}>
+            {{#each links}}
+              {{> menu_item}}
+            {{/each}}
+          </ul>
+        </div>
+      </nav>
+    </div>
   {{/if}}
 </template>
 <template name="menu_item">
   <li class="{{activeRouteClass path}}{{#if children.length}}dropdown{{/if}}">
     <a href={{link}}>{{title}}</a>
     {{#if children.length}}
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu blue">
         {{#each children}}
           {{>menu_item}}
         {{/each}}

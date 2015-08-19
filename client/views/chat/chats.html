@@ -1,6 +1,6 @@
 <template name="chats">
   <div class="chats">
-    <div class="add"><a href={{pathFor 'createChatroom'}}>Send message</a></div>
+    <div class="add"><a href="{{pathFor 'createChatroom'}}" class="waves-effect waves-light btn"><i class="fa fa-plus"></i> Create chat</a></div>
     {{#each chats}}
       <div class="chat">
         {{{chatsView}}}

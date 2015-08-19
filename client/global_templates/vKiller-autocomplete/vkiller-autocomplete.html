@@ -1,0 +1,27 @@
+<template name="userPill">
+  <span class="label">{{username}}</span>
+</template>
+<template name="vkillerAutocomplete">
+  <div class="form-group">
+    <div class="vkiller-autocomplete-box">
+      {{#if recipients}}
+        <div class="recipients-images">
+          {{#each recipients}}
+            <div class="image">{{> userImage user=this imageStyle="avatars"}}</div>
+          {{/each}}
+        </div>
+      {{/if}}
+      <div class="recipients-list">
+        {{#if recipients}}
+          <div class="recipients-names">
+            {{#each recipients}}
+              <span class="username">{{username}}</span>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{> afFieldInput name=name class="hidden"}}
+        {{> inputAutocomplete id=name settings=settings type="autocomplete-input" class="input-xlarge" placeholder="Username..."}}
+      </div>
+    </div>
+  </div>
+</template>

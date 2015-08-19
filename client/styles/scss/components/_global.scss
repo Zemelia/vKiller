@@ -1,3 +1,25 @@
 body {
   background: #fff;
 }
+.xwidget {
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  .xpopover {
+    top: auto;
+    left: 0;
+    right: 0;
+    background: #fff;
+    @include box-shadow(0 1px 1px #ccc);
+    &:focus {
+      outline: none;
+    }
+    td {
+      border-top: 1px solid #ccc;
+    }
+    tr:first-child td {
+      border: none;
+    }
+  }
+}

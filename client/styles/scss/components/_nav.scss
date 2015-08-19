@@ -1,5 +1,42 @@
+.navbar {
+  margin-bottom: 40px;
+  @include box-shadow(none);
+}
 li.dropdown {
+  position: relative;
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 100px;
+    li {
+      display: block;
+      float: none;
+    }
+    a {
+      height: auto;
+      line-height: normal;
+      padding: 10px;
+    }
+  }
   &:hover > .dropdown-menu {
     display: block;
+  }
+}
+#login-buttons {
+  margin-right: 20px;
+}
+.login-link-and-dropdown-list {
+  position: relative;
+  z-index: 1000;
+  height: 56px;
+  line-height: 56px;
+  #login-dropdown-list {
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 100%;
+    margin: 0;
   }
 }

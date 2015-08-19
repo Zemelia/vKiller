@@ -24,6 +24,9 @@ Meteor.publish('users', function(options) {
   }
   return Users.find({});
 });
+Meteor.publish('usersId', function(id) {
+  return Users.find(id);
+});
 Meteor.publish('chatroom', function() {
   return chatRoom.find({recipients: this.userId});
 });

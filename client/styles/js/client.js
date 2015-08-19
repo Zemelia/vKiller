@@ -1,3 +1,8 @@
 vKiller.srollToBottom = function () {
-  window.scrollTo(0,document.body.scrollHeight);
+  setTimeout(function () {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, 50);
 };
+Meteor.startup(function() {
+  $('.tooltipped').tooltip({delay: 50});
+});

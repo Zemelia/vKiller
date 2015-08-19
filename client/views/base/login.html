@@ -1,0 +1,16 @@
+<template name="login">
+  {{#unless currentUser}}
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        {{> atForm}}
+      </div>
+    </div>
+  {{/unless}}
+  {{#if currentUser}}
+    <div id="modal-pwd-change" class="modal">
+      <div class="modal-content">
+        {{> atForm state='changePwd'}}
+      </div>
+    </div>
+  {{/if}}
+</template>

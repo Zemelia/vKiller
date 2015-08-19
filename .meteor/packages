@@ -6,7 +6,6 @@
 
 meteor-platform
 iron:router
-reywood:bootstrap3-sass
 accounts-base
 accounts-password
 aldeed:autoform
@@ -14,7 +13,6 @@ aldeed:collection2
 houston:admin
 miguelalarcos:afwrap-xautocomplete
 underscore
-ian:accounts-ui-bootstrap-3
 mrt:moment
 sacha:spin
 cfs:standard-packages
@@ -22,3 +20,11 @@ cfs:gridfs
 cfs:graphicsmagick
 fourseven:scss
 cfs:autoform
+materialize:materialize
+fongandrew:materialize-modals
+francocatena:compass
+yogiben:autoform-file
+useraccounts:materialize
+fortawesome:fontawesome
+mizzao:autocomplete
+mpowaga:autoform-autocomplete

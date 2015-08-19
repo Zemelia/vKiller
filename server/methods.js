@@ -1,13 +1,17 @@
 Meteor.methods({
   createChat: function(doc) {
-    var chatExists = chatRoom.findOne({recipients: [Meteor.user()._id, doc.username]});
-    if (!chatExists) {
+    var recipients = doc.username;
+    recipients.push(Meteor.user()._id)
+    recipients = _.uniq(recipients);
+    var chatExists = chatRoom.find({recipients: {$all: recipients, $size: recipients.length}}).fetch();
+    console.log(chatExists)
+    if (!chatExists.length) {
       var newChat = {
-        recipients: [Meteor.user()._id, doc.username],
+        recipients: recipients,
         date: new Date(),
         messages: [{
           message: doc.message,
-          author: Meteor.user().username,
+          author: Meteor.userId(),
           date: new Date()
         }]
       };
@@ -19,7 +23,7 @@ Meteor.methods({
     } else {
       return {
         chatExists: true,
-        _id: chatExists._id
+        _id: chatExists[0]._id
       };
     }
   },
@@ -29,7 +33,7 @@ Meteor.methods({
       {$addToSet: {
         messages: {
           message: doc.message,
-          author: Meteor.user().username,
+          author: Meteor.userId(),
           date: new Date()
         }
       }}
@@ -66,10 +70,7 @@ Meteor.methods({
         break;
     }
   },
-  profileUpdate: function (doc, doc1, doc2) {
+  profileUpdate: function (doc) {
     Users.update({"_id": Meteor.user()._id}, {$set: {"profile": doc}})
-  },
-  removeImage: function (id) {
-    Images.remove({"_id": id});
   }
 });

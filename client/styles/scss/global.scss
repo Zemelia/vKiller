@@ -1,4 +1,5 @@
-@import '.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/bootstrap';
+@import "compass";
+@import 'components/forms';
 @import 'components/global';
 @import 'components/nav';
 @import 'components/chatroom';

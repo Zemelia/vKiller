@@ -1,0 +1,19 @@
+<template name="loginButtons">
+  <div class="right">
+    {{#if currentUser}}
+      {{> logoutButton}}
+    {{else}}
+      {{> loginButton}}
+    {{/if}}
+    {{update}}
+  </div>
+</template>
+
+<template name="loginButton">
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal-login">Login</a>
+</template>
+
+<template name="logoutButton">
+  <a class="waves-effect waves-light btn logout" href="#">Logout</a>
+  <a class="waves-effect waves-light btn pwd-change" href="#">Change password</a>
+</template>

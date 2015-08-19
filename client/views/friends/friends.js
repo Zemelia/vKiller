@@ -11,24 +11,17 @@ Template.friends.events({
 });
 
 Template.friends.helpers({
-  userImage: function () {
-    var image = '';
-    if (!_.isUndefined(this.profile) && !_.isEmpty(this.profile.pictureId)) {
-      var image =  Images.findOne({_id: this.profile.pictureId});
-    }
-    return image;
-  },
   followLink: function () {
     var user = Meteor.user();
     if (checkObjectExists(user, 'friends.followers') && _.contains(_.pluck(user.friends.followers, 'id'), this._id)) {
-      return Blaze._globalHelpers.linkGenerate("Accept", 'accept/' + this._id, "accept");
+      return Blaze._globalHelpers.linkGenerate('<i class="fa fa-check-circle"></i>Accept', 'accept/' + this._id, "accept");
     }
     if (checkObjectExists(user, 'friends.followed') && _.contains(user.friends.followed, this._id)) {
-      return Blaze._globalHelpers.linkGenerate("Unfollow", 'unfollow/' + this._id, "unfollow");
+      return Blaze._globalHelpers.linkGenerate('<i class="fa fa-eye-slash"></i>Unfollow', 'unfollow/' + this._id, "unfollow");
     }
     if (checkObjectExists(user, 'friends.activeFriends') && _.contains(user.friends.activeFriends, this._id)) {
-      return Blaze._globalHelpers.linkGenerate("Remove", 'remove/' + this._id, "remove");
+      return Blaze._globalHelpers.linkGenerate('<i class="fa fa-minus-circle"></i>Remove', 'remove/' + this._id, "remove");
     }
-    return Blaze._globalHelpers.linkGenerate("Follow", 'follow/' + this._id, "follow")
+    return Blaze._globalHelpers.linkGenerate('<i class="fa fa-eye"></i>Follow', 'follow/' + this._id, "follow")
   }
 });

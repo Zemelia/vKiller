@@ -1,5 +1,5 @@
 Template.registerHelper('formatDate', function(date, format) {
-  if (!_.isUndefined(format)) {
+  if (!_.isString(format)) {
     format = 'DD/MM/YYYY HH:MM:SS';
   }
   return moment(date).format(format);

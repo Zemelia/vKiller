@@ -19,17 +19,57 @@ AutoForm.hooks({
       method: function(error, result) {
         vKiller.srollToBottom();
       }
+    },
+    onError: function(error, buu, buu1) {
+      console.log(error, buu, buu1)
     }
   }
 });
+
+function getRecepients(data, imagesWithNames) {
+  var recipients = data.recipients;
+  var names = [];
+  var images = suffix = '';
+  _.each(recipients, function (id) {
+    var name = Meteor.users.findOne({_id: id}).username;
+    names.push(name);
+    if (imagesWithNames) {
+      suffix = '<span class="name">' + name + '</span>';
+    }
+    images += '<span class="avatar">' + Blaze.toHTMLWithData(Template.userImage, {
+      'userId': id,
+      'imageStyle': 'avatars'
+    }) + suffix + '</span>';
+  });
+  if (images.length) {
+    images = '<div class="avatars">' + images + '</div>';
+  }
+  if (imagesWithNames) {
+    names = '';
+  } else {
+    names = '<span class="recipients">' + names.join(', ') + '</span>';
+  }
+  return images + names;
+}
+
 Template.chats.helpers({
   chatsView: function() {
-    var recipients = _.without(this.recipients, Meteor.userId());
-    var names = [];
-    _.each(recipients, function (id) {
-      names.push(Meteor.users.findOne({_id: id}).username);
-    });
-    return '<a href="' + Router.path('chatroom', {_id: this._id}) + '">' + names.join(', ') + ' ' + Blaze._globalHelpers.formatDate(this.date) + '</a>';
+    var recipients = getRecepients(this);
+    var date = '<span class="date">' + Blaze._globalHelpers.formatDate(this.date) + '</span>';
+    return '<a href="' + Router.path('chatroom', {_id: this._id}) + '">' + date + recipients + '</a>';
+  }
+});
+
+Template.message.helpers({
+  time: function () {
+    var time = Blaze._globalHelpers.formatDate(this.date, "HH:mm:ss");
+    if (moment(this.date).diff(moment(), 'days') < 0) {
+      time = Blaze._globalHelpers.formatDate(this.date, "D.MM.YY")
+    }
+    return time;
+  },
+  timeTitle: function () {
+    return Blaze._globalHelpers.formatDate(this.date, "DD.MM.YY HH:mm:ss");
   }
 });
 
@@ -38,15 +78,30 @@ Template.messageForm.helpers({
     return this._id;
   }
 });
+
+Template.chatroom.helpers({
+  recipients: function () {
+    return getRecepients(this, true);
+  }
+});
+
 Template.chatroom.onRendered(function() {
   vKiller.srollToBottom();
-  var $form = $('.chatroom form');
+  var $form = $('.chatroom .message-form-wrapper');
   var formWidth = function($form) {
     $form.width($form.parent().width())
   };
-
   formWidth($form);
   $(window).bind('resize', function () {
     formWidth($form)
   });
+  $('.tooltipped').tooltip({delay: 50});
+  Template.chatroom.renderDone = true;
+});
+
+Template.message.onRendered(function() {
+  if (Template.chatroom.renderDone) {
+    vKiller.srollToBottom();
+    $('.tooltipped').tooltip({delay: 50});
+  }
 });
